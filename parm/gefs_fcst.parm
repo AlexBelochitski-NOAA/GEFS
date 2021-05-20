@@ -47,8 +47,11 @@ else
     fi
 fi
 export NUM_FILES=2
-export OUTPUT_GRID=${FV3OUT_GRID:-"gaussian_grid"}
-export WRITE_NEMSIOFILE=.true.
+#export OUTPUT_GRID=${FV3OUT_GRID:-"gaussian_grid"}
+#export WRITE_NEMSIOFILE=.true.
+export OUTPUT_GRID="cubed_sphere_grid"
+export WRITE_NEMSIOFILE=.false.
+
 export WRITE_NEMSIOFLIP=.true.
 # export LONB=$LONB
 # export LATB=$LATB
@@ -159,6 +162,19 @@ export ISUBC_SW=2
 export ISOL=2          # 0--fixed solar constant; 1--changing solar constant
 export lwhtr=${lwhtr:-".true."}
 export swhtr=${swhtr:-".true."}
+# Neural network based emulator of radiative transfer parameterizations
+
+export do_lwnn=".false."
+export do_swnn=".false." 
+export gen_nn_training_set_rad=".true."
+if [ $gen_nn_training_set_rad == ".true." ]; then
+    export DIAG_TABLE="$HOMEgfs/parm/parm_fv3diag/diag_table_gen_nn_training_set_rad"
+fi
+
+#  Call radiative transfer on each time step if uncommented
+#export FHSWR=$DELTIM 
+#export FHLWR=$DELTIM  
+
 
 export CNVGWD=.true.
 export shal_cnv=.true.

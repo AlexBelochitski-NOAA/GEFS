@@ -1,10 +1,8 @@
-SOURCEDIR              = /gpfs/dell6/emc/modeling/noscrub/Alexei.A.Belochitski/gefs-nnrad/
+#SOURCEDIR              = /gpfs/dell2/emc/modeling/save/Dingchen.Hou/GIT/GEFS
 #
-SDATE                   = 2021051800
-EDATE                   = 2021051900
-First                   = Alexei.A
-Last                    = Belochitski
-npert                   = 2
+SDATE                   = 2020100500
+EDATE                   = 2020100506
+npert                   = 30
 INCYC                   = 6
 #ACCOUNT                 = GEN-T2O
 #CUE2RUN                 = dev
@@ -13,7 +11,7 @@ INCYC                   = 6
 #HPS_PTMP                = dell2
 CYCLE_THROTTLE          = 1
 TASK_THROTTLE           = 65
-WHERE_AM_I              = wcoss_dell_p35 # hera, cray, wcoss_dell_p3, wcoss_dell_p35
+#WHERE_AM_I              = wcoss_dell_p35 # hera, cray, wcoss_dell_p3, wcoss_dell_p35
 # Start Parm +++++++++++++++++++++++++++++ For gefs_dev.parm, +++++++++++++++++++++++++++++\/\/
 #
 # Define data streams for prdgen. Each stream will run in a separate thread. 
@@ -53,7 +51,7 @@ GEMPAK_RES              = "0p50 0p25" #1p00 0p50 0p25
 save_pgrb2_p5           = NO
 save_pgrb2_p25          = NO
 fhmax                   = 840
-fhmaxh                  = 24 #384
+fhmaxh                  = 384
 fhmax_aer               = 120
 FHMAXHF                 = 240
 FHOUTHF                 = 3
@@ -106,7 +104,6 @@ DO_SKEB                 = YES
 # for test, NOT USED FOR PRODUCTION gfssource = dev, para, prod
 # To run FV3_COLD, use these line:
 warm_start              = .false.
-#warm_start              = .true.
 #inflag                  = 0
 gfssource               = para
 fhrestart               = 12
@@ -141,10 +138,10 @@ MTNRSLLR                = 766.1536.768
 # Whether generate standalone .ent file for each jobs
 GenTaskEnt              = YES
 GenParm                 = YES
-WORKDIR                 = /gpfs/HPS_PTMP/ptmp/First.Last/o
+#WORKDIR                 = /gpfs/HPS_PTMP/ptmp/First.Last/o
 #INIT_DIR                = /gpfs/dell2/emc/modeling/noscrub/Walter.Kolczynski/gefs_init/gfs_15
 #KEEP_DIR                = /gpfs/hps3/emc/ensemble/noscrub/First.Last/GEFS
-HPSS_DIR                = /NCEPDEV/emc-global/2year/First.Last/GEFS
+#HPSS_DIR                = /NCEPDEV/emc-ensemble/2year/First.Last/GEFS
 #DIRS_TO_KEEP            = ensstat,pgrb2sp25,pgrb2ap5,pgrb22p5,tctrack,cfssst
 #DIRS_TO_ARCHIVE         = ensstat,pgrb2sp25,pgrb2ap5,pgrb22p5,tctrack,cfssst
 #DIRS_TO_KEEP_WAVE       = gridded, station, restart
@@ -152,12 +149,12 @@ HPSS_DIR                = /NCEPDEV/emc-global/2year/First.Last/GEFS
 # RUN_INIT = FV3_RELOC, FV3_COLD(coldstart), FV3_WARM(warmstart), COPY_INIT (Copy existing init), 
 #            NO (do not run init jobs), OR FV3_RELOC (FV3 nemsio file TC relocation, in development)
 # Be sure to set INIT_DIR if using COPY_INIT or KEEP_INIT = YES
-RUN_GETCFSSST           = NO
-RUN_WAVE_PREP           = NO
-RUN_INIT                = NO #FV3_COLD
+RUN_GETCFSSST           = YES
+RUN_WAVE_PREP           = YES
+RUN_INIT                = FV3_COLD
 KEEP_INIT               = NO
 RUN_FORECAST_HR         = YES
-RUN_AEROSOL_MEMBER      = NO
+RUN_AEROSOL_MEMBER      = YES
 RUN_POSTSND             = NO
 RUN_PRDGEN_GFS          = NO
 RUN_FORECAST_LR         = NO
