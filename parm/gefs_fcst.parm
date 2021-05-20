@@ -50,6 +50,7 @@ export NUM_FILES=2
 #export OUTPUT_GRID=${FV3OUT_GRID:-"gaussian_grid"}
 #export WRITE_NEMSIOFILE=.true.
 export OUTPUT_GRID="cubed_sphere_grid"
+export OUTPUT_FILE="netcdf"
 export WRITE_NEMSIOFILE=.false.
 
 export WRITE_NEMSIOFLIP=.true.
