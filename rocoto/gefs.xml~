@@ -10,14 +10,14 @@
 		Xianwu.Xue@noaa.gov
 
 	NOTES:
-		This workflow was automatically generated at 2021-06-11 14:41:31.870840
+		This workflow was automatically generated at 2021-06-14 14:53:40.824578
 	-->
 
 	<!ENTITY MEMLIST "p01 c00">
 	<!ENTITY CYCLE_THROTTLE "1">
 	<!ENTITY TASK_THROTTLE "65">
-	<!ENTITY SDATE "2021060600">
-	<!ENTITY EDATE "2021061600">
+	<!ENTITY SDATE "2021061400">
+	<!ENTITY EDATE "2021062400">
 	<!ENTITY INCYC "6">
 	<!ENTITY WHERE_AM_I "wcoss_dell_p35">
 	<!ENTITY GEFS_ROCOTO "/gpfs/dell6/emc/modeling/noscrub/Alexei.A.Belochitski/gefs-nnrad/rocoto">
@@ -59,10 +59,10 @@
 	<log><cyclestr>&WORKFLOW_LOG_DIR;/gefs@Y@m@d@H.log</cyclestr></log>
 
 	<cycledef group="gefs">&SDATE;00 &EDATE;00 &INCYC;:00:00</cycledef>
-	<cycledef group="gefs_00z">202106060000 &EDATE;00 24:00:00</cycledef>
-	<cycledef group="gefs_06z">202106060600 &EDATE;00 24:00:00</cycledef>
-	<cycledef group="gefs_12z">202106061200 &EDATE;00 24:00:00</cycledef>
-	<cycledef group="gefs_18z">202106061800 &EDATE;00 24:00:00</cycledef>
+	<cycledef group="gefs_00z">202106140000 &EDATE;00 24:00:00</cycledef>
+	<cycledef group="gefs_06z">202106140600 &EDATE;00 24:00:00</cycledef>
+	<cycledef group="gefs_12z">202106141200 &EDATE;00 24:00:00</cycledef>
+	<cycledef group="gefs_18z">202106141800 &EDATE;00 24:00:00</cycledef>
 
 	<!--- init jobs -->
 	&forecast_hr;
