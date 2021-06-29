@@ -10,14 +10,14 @@
 		Xianwu.Xue@noaa.gov
 
 	NOTES:
-		This workflow was automatically generated at 2021-06-21 15:46:02.172845
+		This workflow was automatically generated at 2021-06-21 21:39:44.321331
 	-->
 
 	<!ENTITY MEMLIST "p01 c00">
-	<!ENTITY CYCLE_THROTTLE "26">
+	<!ENTITY CYCLE_THROTTLE "27">
 	<!ENTITY TASK_THROTTLE "65">
-	<!ENTITY SDATE "2017082300">
-	<!ENTITY EDATE "2019040900">
+	<!ENTITY SDATE "2018111500">
+	<!ENTITY EDATE "2018111500">
 	<!ENTITY INCYC "6">
 	<!ENTITY WHERE_AM_I "wcoss_dell_p35">
 	<!ENTITY GEFS_ROCOTO "/gpfs/dell6/emc/modeling/noscrub/Alexei.A.Belochitski/mk-gefs-ics/rocoto">
@@ -59,13 +59,9 @@
 	<log><cyclestr>&WORKFLOW_LOG_DIR;/gefs@Y@m@d@H.log</cyclestr></log>
 
 	<cycledef group="gefs">&SDATE;00 &EDATE;00 &INCYC;:00:00</cycledef>
-	<cycledef group="gefs_00z">201708230000 &EDATE;00 24:00:00</cycledef>
-	<cycledef group="gefs_06z">201708230600 &EDATE;00 24:00:00</cycledef>
-	<cycledef group="gefs_12z">201708231200 &EDATE;00 24:00:00</cycledef>
-	<cycledef group="gefs_18z">201708231800 &EDATE;00 24:00:00</cycledef>
+	<cycledef group="gefs_00z">201811150000 &EDATE;00 24:00:00</cycledef>
 
 	<!--- init jobs -->
-	&atmos_prep;
-	&init_recenter;
+	&getcfssst;
 
 </workflow>
