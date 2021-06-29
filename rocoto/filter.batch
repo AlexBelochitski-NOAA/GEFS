@@ -1,0 +1,61 @@
+#!/bin/bash
+
+ module load NCO/4.7.0
+ set +m
+ set +x
+
+export member=${member:-${1:-"gec00"}}
+export fhourmin=${fhourmin:-${2:-"0"}}
+export fhourmax=${fhourmax:-${3:-"3"}}
+export date=${date:-${4:-"20210606"}}
+export tmp=${tmp:-${5:-"/gpfs/dell2/stmp/Alexei.A.Belochitski/tmp"}}
+
+ mkdir -p $tmp
+ cd /gpfs/dell6/ptmp/Alexei.A.Belochitski/o/gefs-nnrad/com/gefs/dev/gefs.${date}/00/atmos/sfcsig
+
+ echo 
+ echo Processing $member, fhourmin=$fhourmin, fhourmax=$fhourmax, date=$date
+
+ for fhour in $(seq -f "%03g" $fhourmin 3 $fhourmax) ; do
+
+  
+  fileout=${member}.t00z.sfcf${fhour}.subset.nc  
+  if [ $fhour == nan ] ; then fileout=${member}.t00z.sfcf000.subset.nc  ; fi
+
+  echo 
+  echo Generating $fileout
+
+  for tile in $(seq 1 6) ; do
+
+   filein=${member}.t00z.sfcf${fhour}.tile${tile}.nc
+   if [ $fhour == nan ] ; then filein=${member}.t00z.sfcf000.tile${tile}.nc ; fi
+   
+   if [ -e $filein ] ; then 
+
+    for grid_xt in  $(shuf -i 0-383 -n 15) ; do
+     for grid_yt in $(shuf -i 0-383 -n 15) ; do
+
+          ncks -O -h -d grid_xt,$grid_xt -d grid_yt,$grid_yt -x -v grid_xt,grid_yt $filein $tmp/out_${date}_${member}_${fhour}_${grid_xt}_${grid_yt}_${tile}.nc  &
+      done # grid_yt
+    done  # grid_xt
+
+   else 
+
+    echo  $filein not found
+
+   fi
+
+  done # tile
+
+    wait
+
+    echo Concatenating along record dimension for $fileout
+    ncecat -h -O -u record $tmp/out_${date}_${member}_${fhour}_*.nc $fileout
+    rm $tmp/out_${date}_${member}_${fhour}_*.nc &
+
+    echo Permutting record dimensions for $fileout
+    ncwa -h -O -a grid_xt,grid_yt $fileout $fileout
+    ncpdq -h -O -a time,record,phalf,pfull $fileout $fileout
+    ncks -h -O --mk_rec_dmn time $fileout $fileout
+
+ done # fhour
