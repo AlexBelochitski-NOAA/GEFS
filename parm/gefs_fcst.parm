@@ -165,7 +165,7 @@ export lwhtr=${lwhtr:-".true."}
 export swhtr=${swhtr:-".true."}
 # Neural network based emulator of radiative transfer parameterizations
 
-export do_lwnn=".false."
+export do_lwnn=".true."
 export do_swnn=".false." 
 export gen_nn_training_set_rad=".true."
 if [ $gen_nn_training_set_rad == ".true." ]; then

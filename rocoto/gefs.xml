@@ -10,17 +10,17 @@
 		Xianwu.Xue@noaa.gov
 
 	NOTES:
-		This workflow was automatically generated at 2021-06-27 15:43:40.494271
+		This workflow was automatically generated at 2021-11-03 23:10:15.184558
 	-->
 
 	<!ENTITY MEMLIST "p01 c00">
-	<!ENTITY CYCLE_THROTTLE "27">
+	<!ENTITY CYCLE_THROTTLE "1">
 	<!ENTITY TASK_THROTTLE "65">
-	<!ENTITY SDATE "2017082300">
-	<!ENTITY EDATE "2019102600">
+	<!ENTITY SDATE "2021110200">
+	<!ENTITY EDATE "2021110200">
 	<!ENTITY INCYC "6">
 	<!ENTITY WHERE_AM_I "wcoss_dell_p35">
-	<!ENTITY GEFS_ROCOTO "/gpfs/dell6/emc/modeling/noscrub/Alexei.A.Belochitski/gefs-nnrad/rocoto">
+	<!ENTITY GEFS_ROCOTO "/gpfs/dell2/emc/modeling/save/Alexei.A.Belochitski/gefs-nnrad/rocoto">
 	<!ENTITY BIN "&GEFS_ROCOTO;/bin/&WHERE_AM_I;">
 	<!ENTITY PRE "&GEFS_ROCOTO;/bin/gefs_pre_job.sh">
 	<!ENTITY WORKFLOW_LOG_DIR "&GEFS_ROCOTO;/logs">
@@ -29,7 +29,7 @@
 	<!ENTITY DATA_DIR "&WORKDIR;/com/gefs/dev">
 	<!ENTITY EXPID "gefs-nnrad">
 	<!ENTITY PSLOT "gefs-nnrad">
-	<!ENTITY SOURCEDIR "/gpfs/dell6/emc/modeling/noscrub/Alexei.A.Belochitski/gefs-nnrad/">
+	<!ENTITY SOURCEDIR "/gpfs/dell2/emc/modeling/save/Alexei.A.Belochitski/gefs-nnrad/">
 	<!ENTITY WORKDIR "/gpfs/dell6/ptmp/Alexei.A.Belochitski/o/gefs-nnrad">
 	<!ENTITY KEEP_DIR "/gpfs/dell6/emc/modeling/noscrub/Alexei.A.Belochitski/GEFS/gefs-nnrad">
 	<!ENTITY INIT_DIR "/gpfs/dell6/emc/modeling/noscrub/Alexei.A.Belochitski/GEFS_INIT/">
@@ -44,11 +44,11 @@
 	<!ENTITY SCHEDULER "lsf">
 
 	<!-- External entities -->
-	<!ENTITY ENV_VARS   SYSTEM "/gpfs/dell6/emc/modeling/noscrub/Alexei.A.Belochitski/gefs-nnrad/rocoto/tasks/env_vars.ent">
-	<!ENTITY DATE_VARS   SYSTEM "/gpfs/dell6/emc/modeling/noscrub/Alexei.A.Belochitski/gefs-nnrad/rocoto/tasks/date_vars.ent">
+	<!ENTITY ENV_VARS   SYSTEM "/gpfs/dell2/emc/modeling/save/Alexei.A.Belochitski/gefs-nnrad/rocoto/tasks/env_vars.ent">
+	<!ENTITY DATE_VARS   SYSTEM "/gpfs/dell2/emc/modeling/save/Alexei.A.Belochitski/gefs-nnrad/rocoto/tasks/date_vars.ent">
 
 	<!-- External parameter entities -->
-	<!ENTITY % TASKS    SYSTEM "/gpfs/dell6/emc/modeling/noscrub/Alexei.A.Belochitski/gefs-nnrad/rocoto/tasks/all.ent">
+	<!ENTITY % TASKS    SYSTEM "/gpfs/dell2/emc/modeling/save/Alexei.A.Belochitski/gefs-nnrad/rocoto/tasks/all.ent">
 	%TASKS;
 
 	<!-- END: Resource requirements for the workflow -->
@@ -59,12 +59,13 @@
 	<log><cyclestr>&WORKFLOW_LOG_DIR;/gefs@Y@m@d@H.log</cyclestr></log>
 
 	<cycledef group="gefs">&SDATE;00 &EDATE;00 &INCYC;:00:00</cycledef>
-	<cycledef group="gefs_00z">201708230000 &EDATE;00 24:00:00</cycledef>
-	<cycledef group="gefs_06z">201708230600 &EDATE;00 24:00:00</cycledef>
-	<cycledef group="gefs_12z">201708231200 &EDATE;00 24:00:00</cycledef>
-	<cycledef group="gefs_18z">201708231800 &EDATE;00 24:00:00</cycledef>
+	<cycledef group="gefs_00z">202111020000 &EDATE;00 24:00:00</cycledef>
 
 	<!--- init jobs -->
 	&forecast_hr;
+	&post_hr;
+	&prdgen_hr;
+	&ensstat_hr;
+	&enspost_hr;
 
 </workflow>
