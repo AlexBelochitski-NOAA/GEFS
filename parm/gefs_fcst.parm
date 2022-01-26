@@ -48,10 +48,13 @@ else
 fi
 export NUM_FILES=2
 #export OUTPUT_GRID=${FV3OUT_GRID:-"gaussian_grid"}
-#export WRITE_NEMSIOFILE=.true.
-export OUTPUT_GRID="cubed_sphere_grid"
-export OUTPUT_FILE="netcdf"
-export WRITE_NEMSIOFILE=.false.
+export WRITE_NEMSIOFILE=.true.
+#export OUTPUT_GRID="cubed_sphere_grid"
+export OUTPUT_GRID="gaussian_grid"
+#export OUTPUT_FILE="netcdf"
+export OUTPUT_FILE="nemsio"
+#export WRITE_NEMSIOFILE=.false.
+export WRITE_NEMSIOFILE=.true.
 
 export WRITE_NEMSIOFLIP=.true.
 # export LONB=$LONB
@@ -166,8 +169,10 @@ export swhtr=${swhtr:-".true."}
 # Neural network based emulator of radiative transfer parameterizations
 
 export do_lwnn=".true."
+#export do_lwnn=".false."
 export do_swnn=".false." 
-export gen_nn_training_set_rad=".true."
+#export gen_nn_training_set_rad=".true."
+export gen_nn_training_set_rad=".false."
 if [ $gen_nn_training_set_rad == ".true." ]; then
     export DIAG_TABLE="$HOMEgfs/parm/parm_fv3diag/diag_table_gen_nn_training_set_rad"
 fi
